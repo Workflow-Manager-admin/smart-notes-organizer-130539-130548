@@ -23,25 +23,25 @@
       <ng-container *ngIf="!showEditor">
         <ng-container *ngIf="selectedNote; else notesList">
           <mat-card class="note-view-card">
-            <h2>{{selectedNote?.title}}</h2>
+            <h2>{{selectedNote.title}}</h2>
             <div class="meta">
-              <span *ngIf="selectedNote?.folder" class="folder">{{selectedNote?.folder}}</span>
+              <span *ngIf="selectedNote.folder" class="folder">{{selectedNote.folder}}</span>
               <mat-chip-list>
-                <mat-chip *ngFor="let tag of selectedNote?.tags" color="accent">{{tag}}</mat-chip>
+                <mat-chip *ngFor="let tag of selectedNote.tags" color="accent">{{tag}}</mat-chip>
               </mat-chip-list>
-              <span class="date">{{selectedNote?.updated_at?.slice(0, 10)}}</span>
+              <span class="date">{{selectedNote.updated_at.slice(0, 10)}}</span>
             </div>
-            <pre class="content">{{selectedNote?.content}}</pre>
+            <pre class="content">{{selectedNote.content}}</pre>
             <div class="actions">
               <button mat-raised-button color="primary" (click)="onEditNote()">Edit</button>
-              <button mat-button color="warn" (click)="onDeleteNote(selectedNote?.id)">Delete</button>
+              <button mat-button color="warn" (click)="onDeleteNote(selectedNote.id)">Delete</button>
             </div>
           </mat-card>
         </ng-container>
         <ng-template #notesList>
           <app-notes-list
             [notes]="notes"
-            [selectedNoteId]="selectedNote?.id"
+            [selectedNoteId]="selectedNote ? selectedNote.id : null"
             (noteSelected)="onSelectNote($event)"
             (deleteNote)="onDeleteNote($event)">
           </app-notes-list>
