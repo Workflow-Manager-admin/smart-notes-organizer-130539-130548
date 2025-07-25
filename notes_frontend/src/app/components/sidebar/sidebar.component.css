@@ -1,0 +1,27 @@
+mat-sidenav {
+  width: 250px;
+  background: #f5f7fa;
+  height: 100%;
+}
+.sidebar-section {
+  margin-top: 1.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+.selected {
+  background: #e0e7fa;
+  color: #1976d2;
+}
+mat-toolbar {
+  font-size: 1.2rem;
+}
+h4 {
+  margin: 1rem 0 0.5rem 0;
+  font-weight: 600;
+  color: #424242;
+}
+mat-list-item {
+  cursor: pointer;
+  border-radius: 4px;
+  margin-bottom: 0.2rem;
+}

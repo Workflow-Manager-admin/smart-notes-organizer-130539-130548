@@ -1,0 +1,46 @@
+.main-layout {
+  display: flex;
+  height: calc(100vh - 56px);
+  background: #fafcff;
+}
+app-sidebar {
+  min-width: 240px;
+  max-width: 270px;
+}
+.main-content {
+  flex: 1 1 auto;
+  padding: 2rem 2% 1.5rem 2%;
+  overflow: auto;
+}
+.note-view-card {
+  max-width: 700px;
+  margin: 1rem auto;
+  background: #fff;
+  box-shadow: 0 0 12px 0 rgb(0 0 0/13%);
+}
+.meta {
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: #666;
+}
+.folder {
+  font-weight: 500;
+  color: #1976d2;
+}
+.date {
+  margin-left: auto;
+}
+pre.content {
+  background: #f6f8fb;
+  padding: 1rem;
+  font-family: inherit;
+  border-radius: 6px;
+  min-height: 150px;
+}
+.actions {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 1rem;
+}

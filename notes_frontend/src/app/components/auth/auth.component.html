@@ -1,0 +1,27 @@
+<mat-card class="auth-card">
+  <h3>{{ authMode === 'login' ? 'Sign In' : 'Sign Up' }}</h3>
+  <form>
+    <mat-form-field appearance="fill" style="width: 100%;">
+      <mat-label>Email</mat-label>
+      <input matInput [(ngModel)]="email" name="email" />
+    </mat-form-field>
+    <mat-form-field appearance="fill" style="width: 100%;">
+      <mat-label>Password</mat-label>
+      <input matInput type="password" [(ngModel)]="password" name="password" />
+    </mat-form-field>
+    <div *ngIf="errorMessage" class="error-msg text-danger">{{ errorMessage }}</div>
+    <button mat-raised-button color="primary" type="button" (click)="doAuth()">
+      {{ authMode === 'login' ? 'Sign In' : 'Sign Up' }}
+    </button>
+  </form>
+  <div class="switch-auth">
+    <span *ngIf="authMode === 'login'">
+      New user?
+      <a href="#" (click)="authMode = 'signup'; $event.preventDefault()">Sign up</a>
+    </span>
+    <span *ngIf="authMode === 'signup'">
+      Already have an account?
+      <a href="#" (click)="authMode = 'login'; $event.preventDefault()">Sign in</a>
+    </span>
+  </div>
+</mat-card>

@@ -1,0 +1,55 @@
+<ng-container *ngIf="!showAuth; else authForm">
+  <app-header [searchValue]="searchValue"
+              (search)="onSearch($event)"
+              (newNote)="onNewNote()"
+              (logout)="onLogout()"></app-header>
+  <div class="main-layout">
+    <app-sidebar
+      [tags]="tags"
+      [folders]="folders"
+      [selectedTag]="selectedTag"
+      [selectedFolder]="selectedFolder"
+      (tagSelected)="onSelectTag($event)"
+      (folderSelected)="onSelectFolder($event)">
+    </app-sidebar>
+    <div class="main-content">
+      <ng-container *ngIf="showEditor">
+        <app-note-editor
+          [note]="editorNote"
+          [allTags]="tags"
+          (save)="onSaveNote($event)"
+          (cancel)="onCancelEditor()"></app-note-editor>
+      </ng-container>
+      <ng-container *ngIf="!showEditor">
+        <ng-container *ngIf="selectedNote; else notesList">
+          <mat-card class="note-view-card">
+            <h2>{{selectedNote.title}}</h2>
+            <div class="meta">
+              <span *ngIf="selectedNote.folder" class="folder">{{selectedNote.folder}}</span>
+              <mat-chip-list>
+                <mat-chip *ngFor="let tag of selectedNote.tags" color="accent">{{tag}}</mat-chip>
+              </mat-chip-list>
+              <span class="date">{{selectedNote.updated_at.slice(0, 10)}}</span>
+            </div>
+            <pre class="content">{{selectedNote.content}}</pre>
+            <div class="actions">
+              <button mat-raised-button color="primary" (click)="onEditNote()">Edit</button>
+              <button mat-button color="warn" (click)="onDeleteNote(selectedNote.id)">Delete</button>
+            </div>
+          </mat-card>
+        </ng-container>
+        <ng-template #notesList>
+          <app-notes-list
+            [notes]="notes"
+            [selectedNoteId]="selectedNote ? selectedNote.id : null"
+            (noteSelected)="onSelectNote($event)"
+            (deleteNote)="onDeleteNote($event)">
+          </app-notes-list>
+        </ng-template>
+      </ng-container>
+    </div>
+  </div>
+</ng-container>
+<ng-template #authForm>
+  <app-auth (login)="onLogin($event)" (signup)="onSignup($event)"></app-auth>
+</ng-template>

@@ -1,0 +1,31 @@
+:root {
+  --primary: #1976d2;
+  --secondary: #424242;
+  --accent: #e91e63;
+  --background: #fafcff;
+  --surface: #fff;
+  --on-primary: #fff;
+  --on-accent: #fff;
+  --on-secondary: #fff;
+}
+
+body {
+  background: var(--background);
+  font-family: "Inter", "Segoe UI", Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #292929;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a, a:visited {
+  color: var(--accent);
+}
+
+.mat-toolbar {
+  background-color: var(--primary) !important;
+  color: var(--on-primary) !important;
+}
