@@ -7,6 +7,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatChipInputEvent } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
@@ -45,7 +46,27 @@ export class NoteEditorComponent {
   onSave() {
     this.save.emit(this.editNote);
   }
+
   onCancel() {
     this.cancel.emit();
+  }
+
+  removeTag(tag: string) {
+    if (this.editNote.tags) {
+      this.editNote.tags = this.editNote.tags.filter(t => t !== tag);
+    }
+  }
+
+  addTag(event: MatChipInputEvent) {
+    const value = (event.value || '').trim();
+    if (value && (!this.editNote.tags || !this.editNote.tags.includes(value))) {
+      if (!this.editNote.tags) {
+        this.editNote.tags = [];
+      }
+      this.editNote.tags = [...this.editNote.tags, value];
+    }
+    if (event.chipInput) {
+      event.chipInput.clear();
+    }
   }
 }

@@ -9,6 +9,8 @@ import { SidebarComponent } from '../../components/sidebar/sidebar.component';
 import { NotesListComponent } from '../../components/notes-list/notes-list.component';
 import { NoteEditorComponent } from '../../components/note-editor/note-editor.component';
 import { AuthComponent } from '../../components/auth/auth.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatChipsModule } from '@angular/material/chips';
 
 @Component({
   selector: 'app-notes-page',
@@ -22,6 +24,8 @@ import { AuthComponent } from '../../components/auth/auth.component';
     NotesListComponent,
     NoteEditorComponent,
     AuthComponent,
+    MatCardModule,
+    MatChipsModule,
   ]
 })
 export class NotesPageComponent implements OnInit {
@@ -37,8 +41,6 @@ export class NotesPageComponent implements OnInit {
   showAuth = false;
 
   constructor(
-    private supabase: SupabaseService,
-    public auth: AuthService
   ) {}
 
   async ngOnInit() {
@@ -66,7 +68,7 @@ export class NotesPageComponent implements OnInit {
       folder: this.selectedFolder,
       search: this.searchValue
     });
-    if (!res.error) this.notes = res.data;
+    if (!res.error && res.data) this.notes = res.data;
     if (this.selectedNote) {
       this.selectedNote = this.notes.find(n => n.id === this.selectedNote?.id) || null;
     }

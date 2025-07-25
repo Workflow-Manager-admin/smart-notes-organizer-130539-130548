@@ -3,7 +3,7 @@
   <span class="title">Smart Notes</span>
   <span class="spacer"></span>
   <mat-form-field>
-    <input matInput placeholder="Search" [value]="searchValue" (input)="doSearch($event.target.value)">
+    <input matInput placeholder="Search" [value]="searchValue" (input)="onInput($event)">
   </mat-form-field>
   <button mat-icon-button color="accent" (click)="createNote()">
     <mat-icon>note_add</mat-icon>

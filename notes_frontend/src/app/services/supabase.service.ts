@@ -15,23 +15,20 @@ export class SupabaseService {
   constructor() {
     let url = '';
     let key = '';
-    // Try Angular/SSR safe environment detection first (process.env), then window
-    // Fallback: use window only in browser
+    // Try Angular/SSR safe environment detection first (process.env), then window (when in browser)
     if (typeof globalThis !== 'undefined' && (globalThis as any).process?.env) {
       url = (globalThis as any).process.env['NG_APP_SUPABASE_URL'] || '';
       key = (globalThis as any).process.env['NG_APP_SUPABASE_KEY'] || '';
     }
-    if (!url || !key) {
-      if (typeof window !== 'undefined') {
-        url = (window as any)['NG_APP_SUPABASE_URL'] || '';
-        key = (window as any)['NG_APP_SUPABASE_KEY'] || '';
-      }
+    // Use window in browser only (guard rigorously for Node)
+    if ((!url || !key) && typeof globalThis !== 'undefined' && typeof (globalThis as any).window !== 'undefined') {
+      url = (globalThis as any).window['NG_APP_SUPABASE_URL'] || '';
+      key = (globalThis as any).window['NG_APP_SUPABASE_KEY'] || '';
     }
-    if (!url || !key) {
-      if (typeof import.meta !== 'undefined' && (import.meta as any).env) {
-        url = (import.meta as any).env['NG_APP_SUPABASE_URL'] || '';
-        key = (import.meta as any).env['NG_APP_SUPABASE_KEY'] || '';
-      }
+    // Fallback to import.meta.env (for Vite/modern)
+    if ((!url || !key) && typeof import.meta !== 'undefined' && (import.meta as any).env) {
+      url = (import.meta as any).env['NG_APP_SUPABASE_URL'] || '';
+      key = (import.meta as any).env['NG_APP_SUPABASE_KEY'] || '';
     }
     this.supabase = createClient(url, key);
   }

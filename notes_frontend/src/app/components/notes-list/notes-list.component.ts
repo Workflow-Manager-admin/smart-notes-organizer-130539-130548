@@ -3,7 +3,7 @@ import { Note } from '../../models/note.model';
 import { CommonModule } from '@angular/common';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
-import { MatChipModule } from '@angular/material/chips';
+import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
@@ -15,7 +15,7 @@ import { MatIconModule } from '@angular/material/icon';
     CommonModule,
     MatListModule,
     MatButtonModule,
-    MatChipModule,
+    MatChipsModule,
     MatIconModule,
   ]
 })

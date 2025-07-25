@@ -11,7 +11,7 @@
           *ngFor="let tag of editNote.tags"
           [selectable]="true"
           [removable]="true"
-          (removed)="editNote.tags = editNote.tags.filter(t => t!== tag)">
+          (removed)="removeTag(tag)">
           {{tag}}
           <mat-icon matChipRemove>cancel</mat-icon>
         </mat-chip>
@@ -19,15 +19,7 @@
           placeholder="Add tag..."
           [matChipInputFor]="chipList"
           [matChipInputSeparatorKeyCodes]="[13,188]"
-          (matChipInputTokenEnd)="
-            (event) => {
-              if (event.value) {
-                if (!editNote.tags.includes(event.value.trim())) {
-                  editNote.tags = [...editNote.tags, event.value.trim()];
-                }
-                event.input.value = '';
-              }
-            }"
+          (matChipInputTokenEnd)="addTag($event)"
         />
       </mat-chip-list>
     </mat-form-field>

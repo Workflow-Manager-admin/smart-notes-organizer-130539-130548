@@ -29,6 +29,12 @@ export class HeaderComponent {
   doSearch(value: string) {
     this.search.emit(value);
   }
+
+  onInput(event: Event) {
+    const value = (event.target as HTMLInputElement).value;
+    this.doSearch(value);
+  }
+
   createNote() {
     this.newNote.emit();
   }
