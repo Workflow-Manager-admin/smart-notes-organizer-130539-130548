@@ -9,6 +9,7 @@ import { NoteEditorComponent } from '../../components/note-editor/note-editor.co
 import { AuthComponent } from '../../components/auth/auth.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-notes-page',
@@ -24,6 +25,7 @@ import { MatChipsModule } from '@angular/material/chips';
     AuthComponent,
     MatCardModule,
     MatChipsModule,
+    MatIconModule,
   ]
 })
 export class NotesPageComponent implements OnInit {
@@ -41,4 +43,29 @@ export class NotesPageComponent implements OnInit {
   async ngOnInit() {
     // Application logic omitted for brevity, since all service code was inlined and this is a stub for lint fix.
   }
+
+  // PUBLIC_INTERFACE
+  onSearch(event: any) { void(event); }
+  // PUBLIC_INTERFACE
+  onNewNote() {}
+  // PUBLIC_INTERFACE
+  onLogout() {}
+  // PUBLIC_INTERFACE
+  onSelectTag(tag: string) { void(tag); }
+  // PUBLIC_INTERFACE
+  onSelectFolder(folder: string) { void(folder); }
+  // PUBLIC_INTERFACE
+  onSaveNote(note: any) { void(note); }
+  // PUBLIC_INTERFACE
+  onCancelEditor() {}
+  // PUBLIC_INTERFACE
+  onEditNote() {}
+  // PUBLIC_INTERFACE
+  onDeleteNote(id: any) { void(id); }
+  // PUBLIC_INTERFACE
+  onSelectNote(id: any) { void(id); }
+  // PUBLIC_INTERFACE
+  onLogin(event: any) { void(event); }
+  // PUBLIC_INTERFACE
+  onSignup(event: any) { void(event); }
 }
