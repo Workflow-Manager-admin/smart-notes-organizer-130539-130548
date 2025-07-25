@@ -1,0 +1,14 @@
+<div class="notes-list">
+  <mat-list>
+    <mat-list-item *ngFor="let note of notes" (click)="onSelect(note.id)" [class.selected]="selectedNoteId === note.id">
+      <div class="note-title">{{ note.title }}</div>
+      <mat-chip-list>
+        <mat-chip *ngFor="let tag of note.tags" color="accent" selected>{{ tag }}</mat-chip>
+      </mat-chip-list>
+      <span class="note-date">{{ note.updated_at?.slice(0,10) }}</span>
+      <button mat-icon-button color="warn" (click)="onDelete(note.id, $event)">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </mat-list-item>
+  </mat-list>
+</div>

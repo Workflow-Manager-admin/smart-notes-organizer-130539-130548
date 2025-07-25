@@ -1,0 +1,32 @@
+<mat-sidenav-container>
+  <mat-sidenav mode="side" opened>
+    <mat-toolbar color="primary">Notes Organizer</mat-toolbar>
+    <div class="sidebar-section">
+      <h4>Tags</h4>
+      <mat-nav-list>
+        <mat-list-item 
+          *ngFor="let tag of tags"
+          [class.selected]="selectedTag === tag"
+          (click)="selectTag(tag)">
+          <mat-icon>label</mat-icon>
+          <span>{{ tag }}</span>
+        </mat-list-item>
+      </mat-nav-list>
+    </div>
+    <div class="sidebar-section">
+      <h4>Folders</h4>
+      <mat-nav-list>
+        <mat-list-item 
+          *ngFor="let folder of folders"
+          [class.selected]="selectedFolder === folder"
+          (click)="selectFolder(folder)">
+          <mat-icon>folder</mat-icon>
+          <span>{{ folder }}</span>
+        </mat-list-item>
+      </mat-nav-list>
+    </div>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <ng-content></ng-content>
+  </mat-sidenav-content>
+</mat-sidenav-container>

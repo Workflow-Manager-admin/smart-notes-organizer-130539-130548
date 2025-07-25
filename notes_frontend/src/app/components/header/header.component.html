@@ -1,0 +1,12 @@
+<mat-toolbar color="primary" class="header-toolbar">
+  <span class="logo">📝</span>
+  <span class="title">Smart Notes</span>
+  <span class="spacer"></span>
+  <mat-form-field>
+    <input matInput placeholder="Search" [value]="searchValue" (input)="doSearch($event.target.value)">
+  </mat-form-field>
+  <button mat-icon-button color="accent" (click)="createNote()">
+    <mat-icon>note_add</mat-icon>
+  </button>
+  <button mat-button color="secondary" (click)="doLogout()">Logout</button>
+</mat-toolbar>
